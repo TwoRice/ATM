@@ -1,0 +1,10 @@
+C:\Users\Rory\Documents\GitHub\ATM\ATM\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\Rory\Documents\GitHub\ATM\ATM\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\ATM.csproj.GenerateResource.Cache
+C:\Users\Rory\Documents\GitHub\ATM\ATM\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\ATM.csprojResolveAssemblyReference.cache
+C:\Users\Rory\Documents\GitHub\ATM\ATM\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.frmBank.resources
+C:\Users\Rory\Documents\GitHub\ATM\ATM\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+C:\Users\Rory\Documents\GitHub\ATM\ATM\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+C:\Users\Rory\Documents\GitHub\ATM\ATM\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+C:\Users\Rory\Documents\GitHub\ATM\ATM\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+C:\Users\Rory\Documents\GitHub\ATM\ATM\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+C:\Users\Rory\Documents\GitHub\ATM\ATM\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.frmATM.resources
