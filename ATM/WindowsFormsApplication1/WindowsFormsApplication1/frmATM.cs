@@ -13,8 +13,11 @@ namespace WindowsFormsApplication1
     public partial class frmATM : Form
     {
 
+        //Array of Buttons for the keypad
         Button[,] keyPad = new Button[4, 3];
+        //string entered by user using the keypad
         string input;
+        //variable used to determine which screen of the ATM the user is on
         enum stage
         {
             ACCOUNT,
@@ -29,27 +32,26 @@ namespace WindowsFormsApplication1
         public frmATM()
         {
             InitializeComponent();
-            setup();
+            populateKeyPad();
         }
 
-        public void reset()
-        {
-            st = stage.ACCOUNT;
-            input = "";
-            lblScreen.Text = "Enter Account No : \n";
-        }
-
+        /*
+        *Method to set/reset the ATM when opened/reopened
+        */
         private void Form1_Load(object sender, EventArgs e)
         {
-            reset();
+            accountScreen();
         }
 
-        private void setup()
+
+        /**
+        *Method to populate the key pad array with the buttons for the key pad
+        */
+        private void populateKeyPad()
         {
 
             int k = 0;
-            lblScreen.Text = "Enter Account No : \n";
-
+         
             for (int i = 0; i < 4; i++)
             {
                 for (int j = 0; j < 3; j++)
@@ -70,12 +72,18 @@ namespace WindowsFormsApplication1
 
         }
 
+        /*
+        *Method which sets the ATM to the account number entry screen
+        */
         private void accountScreen()
         {
             st = stage.ACCOUNT;
             lblScreen.Text = "Enter Account No : \n";
         }
 
+        /*
+        *Method which sets the ATM to the PIN number entry screen
+        */
         private void pinScreen()
         {
             st = stage.PIN;
@@ -83,12 +91,18 @@ namespace WindowsFormsApplication1
             lblScreen.Text = "Enter Pin No : \n";
         }
 
+         /*
+        *Method which sets the ATM to account menu screen
+        */
         private void menuScreen()
         {
             st = stage.MENU;
             lblScreen.Text = "1. Withdraw \n 2. Check Balance \n 3. Exit \n"; ;
         }
 
+        /*
+        *Method which sets the ATM to withdraw cash screen
+        */
         private void withdrawScreen()
         {
             st = stage.WITHDRAW;
@@ -96,17 +110,30 @@ namespace WindowsFormsApplication1
             lblScreen.Text = "Enter amount to Withdraw : /n £";
         }
 
+        /*
+        *Method which sets the ATM to account balance screen
+        */
         private void balanceScreen()
         {
             st = stage.BALANCE;
             lblScreen.Text = "Balance : \n £";
         }
 
+        /**
+        * <summary>
+        * Method which handles what happens when a key on the key pad is pressed
+        * </summary>
+        *
+        * <param name="sender">
+        * The button on the key pad that was pressed
+        * </param>
+        */
         private void keyPadEvent_Click(object sender, EventArgs e)
         {
 
             Button btnSender = ((Button)sender);
 
+            //Checks if the ATM is on the menu screen and uses 1,2 and 3 as option selection keys if so
             if (st == stage.MENU)
             {
                 switch (btnSender.Text)
@@ -125,9 +152,9 @@ namespace WindowsFormsApplication1
                 }
             }
 
+            //Checks if the button pressed was the # key and advances to next screen if so
             else if (btnSender.Text == "#")
             {
-
                 switch (st)
                 {
                     case stage.ACCOUNT:
@@ -146,11 +173,12 @@ namespace WindowsFormsApplication1
                         menuScreen();
                         break;
                 }
-
             }
 
+            //Checks if the button pressed was the * key and removes a number from the entry if so
             else if (btnSender.Text == "*")
             {
+                //Stops user deleting characters from pre-defined text
                 if (input.Length != 0)
                 {
                     input = input.Remove(input.Length - 1);
@@ -160,6 +188,7 @@ namespace WindowsFormsApplication1
 
             else
             {
+                //Adds users key input to screen
                 input += btnSender.Text;
                 lblScreen.Text += btnSender.Text;
             }

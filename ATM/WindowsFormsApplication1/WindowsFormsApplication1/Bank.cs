@@ -8,7 +8,8 @@ namespace WindowsFormsApplication1
 {
     class Bank
     {
-         List<Account> ac = new List<Account>();
+        //List of bank accounts
+        List<Account> ac = new List<Account>();
 
         public Bank()
         {
