@@ -13,12 +13,14 @@ namespace WindowsFormsApplication1
     public partial class frmATM : Form
     {
 
+        Bank bank;
+        Account currentAccount;
         //Array of Buttons for the keypad
         Button[,] keyPad = new Button[4, 3];
         //string entered by user using the keypad
         string input;
         //variable used to determine which screen of the ATM the user is on
-        enum stage
+        enum Stage
         {
             ACCOUNT,
             PIN,
@@ -27,10 +29,11 @@ namespace WindowsFormsApplication1
             BALANCE
         };
 
-        stage st;
+        Stage st;
 
-        public frmATM()
+        public frmATM(Bank bank)
         {
+            this.bank = bank;
             InitializeComponent();
             populateKeyPad();
         }
@@ -40,7 +43,7 @@ namespace WindowsFormsApplication1
         */
         private void Form1_Load(object sender, EventArgs e)
         {
-            accountScreen();
+            accountScreen("Enter Account No : \n");
         }
 
 
@@ -75,20 +78,21 @@ namespace WindowsFormsApplication1
         /*
         *Method which sets the ATM to the account number entry screen
         */
-        private void accountScreen()
+        private void accountScreen(string screenText)
         {
-            st = stage.ACCOUNT;
-            lblScreen.Text = "Enter Account No : \n";
+            st = Stage.ACCOUNT;
+            input = "";
+            lblScreen.Text = screenText;
         }
 
         /*
         *Method which sets the ATM to the PIN number entry screen
         */
-        private void pinScreen()
+        private void pinScreen(string screenText)
         {
-            st = stage.PIN;
+            st = Stage.PIN;
             input = "";
-            lblScreen.Text = "Enter Pin No : \n";
+            lblScreen.Text = screenText;
         }
 
          /*
@@ -96,18 +100,18 @@ namespace WindowsFormsApplication1
         */
         private void menuScreen()
         {
-            st = stage.MENU;
+            st = Stage.MENU;
             lblScreen.Text = "1. Withdraw \n 2. Check Balance \n 3. Exit \n"; ;
         }
 
         /*
         *Method which sets the ATM to withdraw cash screen
         */
-        private void withdrawScreen()
+        private void withdrawScreen(string screenText)
         {
-            st = stage.WITHDRAW;
+            st = Stage.WITHDRAW;
             input = "";
-            lblScreen.Text = "Enter amount to Withdraw : /n £";
+            lblScreen.Text = screenText;
         }
 
         /*
@@ -115,8 +119,53 @@ namespace WindowsFormsApplication1
         */
         private void balanceScreen()
         {
-            st = stage.BALANCE;
-            lblScreen.Text = "Balance : \n £";
+            st = Stage.BALANCE;
+            int balance = currentAccount.getBalance();
+            lblScreen.Text = "Balance : \n £" + balance;
+        }
+
+        private void processAccountNo()
+        {
+            int accountNum = Convert.ToInt32(input);
+            Account ac = bank.findAccount(accountNum);
+
+            if (ac == null)
+            {
+                accountScreen("Invalid Account No, Please Try Again : \n");
+            }
+            else
+            {
+                currentAccount = ac;
+                pinScreen("Enter Pin No : \n");
+            }
+        }
+
+        private void processPinNo()
+        {
+            int pinNo = Convert.ToInt32(input);
+            if (currentAccount.checkPin(pinNo))
+            {
+                menuScreen();
+            }
+            else
+            {
+                pinScreen("Invalid Pin No, Please Try Again : \n");
+            }
+        }
+
+        private void processWithdrawl()
+        {
+            int amount = Convert.ToInt32(input);
+            if(currentAccount.getBalance() < amount)
+            {
+                withdrawScreen("Insufficient Funds, Please Try Again : \n £");
+            }
+            else
+            {
+                currentAccount.decrementBalance(amount);
+                menuScreen();
+            }
+
         }
 
         /**
@@ -134,12 +183,12 @@ namespace WindowsFormsApplication1
             Button btnSender = ((Button)sender);
 
             //Checks if the ATM is on the menu screen and uses 1,2 and 3 as option selection keys if so
-            if (st == stage.MENU)
+            if (st == Stage.MENU)
             {
                 switch (btnSender.Text)
                 {
                     case "1":
-                        withdrawScreen();
+                        withdrawScreen("Enter amount to withdraw : \n £");
                         break;
 
                     case "2":
@@ -147,7 +196,7 @@ namespace WindowsFormsApplication1
                         break;
 
                     case "3":
-                        accountScreen();
+                        accountScreen("Enter Account No : \n");
                         break;
                 }
             }
@@ -157,20 +206,20 @@ namespace WindowsFormsApplication1
             {
                 switch (st)
                 {
-                    case stage.ACCOUNT:
-                        pinScreen();
+                    case Stage.ACCOUNT:
+                        processAccountNo();
                         break;
 
-                    case stage.PIN:
+                    case Stage.PIN:
+                        processPinNo();
+                        break;
+
+                    case Stage.BALANCE:
                         menuScreen();
                         break;
 
-                    case stage.BALANCE:
-                        menuScreen();
-                        break;
-
-                    case stage.WITHDRAW:
-                        menuScreen();
+                    case Stage.WITHDRAW:
+                        processWithdrawl();
                         break;
                 }
             }

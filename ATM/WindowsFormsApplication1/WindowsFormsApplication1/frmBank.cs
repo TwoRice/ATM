@@ -14,10 +14,11 @@ namespace WindowsFormsApplication1
     {
 
         Bank bank = new Bank();
-        frmATM atm = new frmATM();
+        frmATM atm;
 
         public frmBank()
         {
+            atm = new frmATM(bank);
             InitializeComponent();
         }
 

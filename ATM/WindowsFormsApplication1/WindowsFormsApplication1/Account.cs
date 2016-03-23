@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApplication1
 {
-    class Account
+    public class Account
     {
         //the attributes for the account
         private int balance;
@@ -42,7 +42,7 @@ namespace WindowsFormsApplication1
          */
         public Boolean decrementBalance(int amount)
         {
-            if (this.balance > amount)
+            if (this.balance >= amount)
             {
                 balance -= amount;
                 return true;
