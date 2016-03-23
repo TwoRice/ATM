@@ -14,24 +14,33 @@ namespace WindowsFormsApplication1
     {
 
         public Bank bank = new Bank();
-        //frmATM atm;
 
         public frmBank()
         {
-            //atm = new frmATM(bank);
             InitializeComponent();
         }
 
+        /**
+        * <summary>
+        * Opens a new ATM in a seprate thread
+        * </summary>
+        */
         private void btnBank_Click(object sender, EventArgs e)
         {
-            //atm.ShowDialog();
-            Thread ATM_T = new Thread(new ThreadStart(ThreadProc));
-            ATM_T.Start();
+            //Sets up the new thread
+            Thread atmThread = new Thread(new ThreadStart(ThreadBegin));
+            //Starts the thread
+            atmThread.Start();
         }
 
-        private void ThreadProc()
+        /**
+        * <summary>
+        * Creates a new ATM form and opens it, to be run as the thread start
+        * </summary>
+        */
+        private void ThreadBegin()
         {
-            var atm = new frmATM(bank);
+            frmATM atm = new frmATM(bank);
             atm.ShowDialog();
 
         }

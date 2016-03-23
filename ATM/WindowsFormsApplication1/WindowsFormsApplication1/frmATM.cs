@@ -13,7 +13,9 @@ namespace WindowsFormsApplication1
     public partial class frmATM : Form
     {
 
+        //Object holding record of all the accounts on the system
         Bank bank;
+        //The account being accessed on the ATM
         Account currentAccount;
         //Array of Buttons for the keypad
         Button[,] keyPad = new Button[4, 3];
@@ -124,11 +126,19 @@ namespace WindowsFormsApplication1
             lblScreen.Text = "Balance : \n £" + balance;
         }
 
+
+        /**
+        * <summary>
+        * Method which takes the account number from the user and checks if it is a valid account then moves on
+        * </summary>
+        */
         private void processAccountNo()
         {
             int accountNum = Convert.ToInt32(input);
+            //Retrieves account information from the bank object
             Account ac = bank.findAccount(accountNum);
 
+            //Checks is account exists
             if (ac == null)
             {
                 accountScreen("Invalid Account No, Please Try Again : \n");
@@ -140,9 +150,15 @@ namespace WindowsFormsApplication1
             }
         }
 
+        /**
+        * <summary>
+        * Method which takes the pin number for the account from the user checks if it is correct then moves on
+        * </summary>
+        */
         private void processPinNo()
         {
             int pinNo = Convert.ToInt32(input);
+            //Checks if pin number is correct
             if (currentAccount.checkPin(pinNo))
             {
                 menuScreen();
@@ -153,10 +169,16 @@ namespace WindowsFormsApplication1
             }
         }
 
+        /**
+        * <summary>
+        * Method which takes amount to be withdrawn from the user and removes that value from the account balance
+        * </summary>
+        */
         private void processWithdrawl()
         {
             int amount = Convert.ToInt32(input);
-            if(currentAccount.getBalance() < amount)
+            //Checks if the user has enough in there account to remove the amount specified
+            if (currentAccount.getBalance() < amount)
             {
                 withdrawScreen("Insufficient Funds, Please Try Again : \n £");
             }

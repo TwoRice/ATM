@@ -36,6 +36,9 @@
             this.findToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.raceConditionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fixToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,7 +56,8 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.accountToolStripMenuItem});
+            this.accountToolStripMenuItem,
+            this.raceConditionToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(784, 24);
@@ -73,19 +77,19 @@
             // createToolStripMenuItem
             // 
             this.createToolStripMenuItem.Name = "createToolStripMenuItem";
-            this.createToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.createToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
             this.createToolStripMenuItem.Text = "Create";
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             // 
             // findToolStripMenuItem
             // 
             this.findToolStripMenuItem.Name = "findToolStripMenuItem";
-            this.findToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.findToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
             this.findToolStripMenuItem.Text = "Find..";
             // 
             // label1
@@ -107,6 +111,27 @@
             this.label2.Size = new System.Drawing.Size(155, 34);
             this.label2.TabIndex = 3;
             this.label2.Text = "Welcome";
+            // 
+            // raceConditionToolStripMenuItem
+            // 
+            this.raceConditionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lagToolStripMenuItem,
+            this.fixToolStripMenuItem});
+            this.raceConditionToolStripMenuItem.Name = "raceConditionToolStripMenuItem";
+            this.raceConditionToolStripMenuItem.Size = new System.Drawing.Size(100, 20);
+            this.raceConditionToolStripMenuItem.Text = "Race Condition";
+            // 
+            // lagToolStripMenuItem
+            // 
+            this.lagToolStripMenuItem.Name = "lagToolStripMenuItem";
+            this.lagToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.lagToolStripMenuItem.Text = "Lag";
+            // 
+            // fixToolStripMenuItem
+            // 
+            this.fixToolStripMenuItem.Name = "fixToolStripMenuItem";
+            this.fixToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fixToolStripMenuItem.Text = "Fix";
             // 
             // frmBank
             // 
@@ -140,5 +165,8 @@
         private System.Windows.Forms.ToolStripMenuItem findToolStripMenuItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ToolStripMenuItem raceConditionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lagToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fixToolStripMenuItem;
     }
 }
