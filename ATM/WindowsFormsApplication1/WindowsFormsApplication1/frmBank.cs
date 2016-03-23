@@ -5,7 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace WindowsFormsApplication1
@@ -13,18 +13,27 @@ namespace WindowsFormsApplication1
     public partial class frmBank : Form
     {
 
-        Bank bank = new Bank();
-        frmATM atm;
+        public Bank bank = new Bank();
+        //frmATM atm;
 
         public frmBank()
         {
-            atm = new frmATM(bank);
+            //atm = new frmATM(bank);
             InitializeComponent();
         }
 
         private void btnBank_Click(object sender, EventArgs e)
         {
+            //atm.ShowDialog();
+            Thread ATM_T = new Thread(new ThreadStart(ThreadProc));
+            ATM_T.Start();
+        }
+
+        private void ThreadProc()
+        {
+            var atm = new frmATM(bank);
             atm.ShowDialog();
+
         }
 
         private void frmBank_Load(object sender, EventArgs e)
