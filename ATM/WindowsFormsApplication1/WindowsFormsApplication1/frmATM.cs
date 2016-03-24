@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -13,6 +14,8 @@ namespace WindowsFormsApplication1
     public partial class frmATM : Form
     {
 
+        Boolean lag, fix;
+        Semaphore s;
         //Object holding record of all the accounts on the system
         Bank bank;
         //The account being accessed on the ATM
@@ -33,8 +36,11 @@ namespace WindowsFormsApplication1
 
         Stage st;
 
-        public frmATM(Bank bank)
+        public frmATM(Bank bank, Boolean lag, Boolean fix)
         {
+            this.lag = lag;
+            this.fix = fix;
+            if(fix == true) { s = new Semaphore(1, 1); }
             this.bank = bank;
             InitializeComponent();
             populateKeyPad();
@@ -134,19 +140,26 @@ namespace WindowsFormsApplication1
         */
         private void processAccountNo()
         {
-            int accountNum = Convert.ToInt32(input);
-            //Retrieves account information from the bank object
-            Account ac = bank.findAccount(accountNum);
+            try
+            {
+                int accountNum = Convert.ToInt32(input);
+                //Retrieves account information from the bank object
+                Account ac = bank.findAccount(accountNum);
 
-            //Checks is account exists
-            if (ac == null)
+                //Checks is account exists
+                if (ac == null)
+                {
+                    accountScreen("Invalid Account No, Please Try Again : \n");
+                }
+                else
+                {
+                    currentAccount = ac;
+                    pinScreen("Enter Pin No : \n");
+                }
+            }
+            catch
             {
                 accountScreen("Invalid Account No, Please Try Again : \n");
-            }
-            else
-            {
-                currentAccount = ac;
-                pinScreen("Enter Pin No : \n");
             }
         }
 
@@ -157,13 +170,20 @@ namespace WindowsFormsApplication1
         */
         private void processPinNo()
         {
-            int pinNo = Convert.ToInt32(input);
-            //Checks if pin number is correct
-            if (currentAccount.checkPin(pinNo))
+            try
             {
-                menuScreen();
+                int pinNo = Convert.ToInt16(input);
+                //Checks if pin number is correct
+                if (currentAccount.checkPin(pinNo))
+                {
+                    menuScreen();
+                }
+                else
+                {
+                    pinScreen("Invalid Pin No, Please Try Again : \n");
+                }
             }
-            else
+            catch
             {
                 pinScreen("Invalid Pin No, Please Try Again : \n");
             }
@@ -184,7 +204,9 @@ namespace WindowsFormsApplication1
             }
             else
             {
+                if(fix == true) { s.WaitOne(); }
                 currentAccount.decrementBalance(amount);
+                if(fix == true) { s.Release(); }
                 menuScreen();
             }
 

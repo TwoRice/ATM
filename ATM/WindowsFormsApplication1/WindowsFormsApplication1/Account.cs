@@ -76,5 +76,10 @@ namespace WindowsFormsApplication1
             return accountNum;
         }
 
+        public int getPinNum()
+        {
+            return pin;
+        }
+
     }
 }

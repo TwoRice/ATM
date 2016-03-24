@@ -34,11 +34,11 @@
             this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.findToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.raceConditionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fixToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -92,6 +92,29 @@
             this.findToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
             this.findToolStripMenuItem.Text = "Find..";
             // 
+            // raceConditionToolStripMenuItem
+            // 
+            this.raceConditionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lagToolStripMenuItem,
+            this.fixToolStripMenuItem});
+            this.raceConditionToolStripMenuItem.Name = "raceConditionToolStripMenuItem";
+            this.raceConditionToolStripMenuItem.Size = new System.Drawing.Size(100, 20);
+            this.raceConditionToolStripMenuItem.Text = "Race Condition";
+            // 
+            // lagToolStripMenuItem
+            // 
+            this.lagToolStripMenuItem.Name = "lagToolStripMenuItem";
+            this.lagToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.lagToolStripMenuItem.Text = "Enable Lag";
+            this.lagToolStripMenuItem.Click += new System.EventHandler(this.lagToolStripMenuItem_Click);
+            // 
+            // fixToolStripMenuItem
+            // 
+            this.fixToolStripMenuItem.Name = "fixToolStripMenuItem";
+            this.fixToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fixToolStripMenuItem.Text = "Enable Fix";
+            this.fixToolStripMenuItem.Click += new System.EventHandler(this.fixToolStripMenuItem_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -112,27 +135,6 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Welcome";
             // 
-            // raceConditionToolStripMenuItem
-            // 
-            this.raceConditionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lagToolStripMenuItem,
-            this.fixToolStripMenuItem});
-            this.raceConditionToolStripMenuItem.Name = "raceConditionToolStripMenuItem";
-            this.raceConditionToolStripMenuItem.Size = new System.Drawing.Size(100, 20);
-            this.raceConditionToolStripMenuItem.Text = "Race Condition";
-            // 
-            // lagToolStripMenuItem
-            // 
-            this.lagToolStripMenuItem.Name = "lagToolStripMenuItem";
-            this.lagToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.lagToolStripMenuItem.Text = "Lag";
-            // 
-            // fixToolStripMenuItem
-            // 
-            this.fixToolStripMenuItem.Name = "fixToolStripMenuItem";
-            this.fixToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.fixToolStripMenuItem.Text = "Fix";
-            // 
             // frmBank
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -147,6 +149,7 @@
             this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "frmBank";
             this.Text = "Bank Computer";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmBank_FormClosing);
             this.Load += new System.EventHandler(this.frmBank_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
