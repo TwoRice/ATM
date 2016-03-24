@@ -1,0 +1,211 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Windows.Forms;
+using Microsoft.VisualBasic;
+
+namespace WindowsFormsApplication1
+{
+    public partial class frmBank : Form
+    {
+        
+        public Bank bank = new Bank();
+        Boolean lag, fix = false;
+
+        public frmBank()
+        {
+            InitializeComponent();
+        }
+
+        /**
+        * <summary>
+        * Opens a new ATM in a seprate thread
+        * </summary>
+        */
+        private void btnBank_Click(object sender, EventArgs e)
+        {
+            //Sets up the new thread
+            Thread atmThread = new Thread(new ThreadStart(ThreadBegin));
+            //Starts the thread
+            atmThread.Start();
+        }
+
+        /**
+        * <summary>
+        * Creates a new ATM form and opens it, to be run as the thread start
+        * </summary>
+        */
+        private void ThreadBegin()
+        {
+            frmATM atm = new frmATM(bank, lag, fix);
+            atm.ShowDialog();
+
+        }
+
+        private void frmBank_Load(object sender, EventArgs e)
+        {
+            if (!System.IO.File.Exists("Accounts.txt"))
+            {
+                System.IO.File.AppendAllText("Accounts.txt", "111111,1111,500" + Environment.NewLine);
+                System.IO.File.AppendAllText("Accounts.txt", "222222,2222,1000" + Environment.NewLine);
+            }
+            else
+            {
+                string[] fileText = System.IO.File.ReadAllLines("Accounts.txt");
+
+                int[] temp = new int[3];
+                foreach (string line in fileText)
+                {
+                    temp = Array.ConvertAll(line.Split(','), int.Parse);
+                    bank.newAccount(temp[2], temp[1], temp[0]);
+                }
+            }
+        }
+
+        private void frmBank_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            List<Account> ac= bank.getAccounts();
+
+            System.IO.File.WriteAllText("Accounts.txt", string.Empty);
+            foreach (var account in ac)
+            {
+                System.IO.File.AppendAllText("Accounts.txt", account.getAccountNum() + "," + account.getPinNum() + "," + account.getBalance() + Environment.NewLine);
+            }
+
+        }
+
+        private void lagToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem toggle = ((ToolStripMenuItem)sender);
+
+            if (toggle.Text == "Enable Lag")
+            {
+                lag = true;
+                toggle.Text = "Disable Lag";
+            }
+            else
+            {
+                lag = false;
+                toggle.Text = "Enable Lag";
+            }
+        }
+
+        private void fixToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem toggle = ((ToolStripMenuItem)sender);
+
+            if (toggle.Text == "Enable Fix")
+            {
+                fix = true;
+                toggle.Text = "Disable Fix";
+            }
+            else
+            {
+                fix = false;
+                toggle.Text = "Enable Fix";
+            }
+        }
+       
+        /**
+        *Method  that allows for accounts to be created
+        */ 
+        private void createToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //boolean varible for input validation
+            bool accountCheck = false;
+            do
+            {
+                //input box that allows user to enter a new account number
+                string acNo = Interaction.InputBox("Please enter a new 6 digit Account Number", "Account Creation", "", -1, -1);
+                //validation to check length of the account number entered
+                if (acNo.Length == 6)
+                {
+
+                    //converts user input to integer
+                    int newAccount = Convert.ToInt32(acNo);
+                    accountCheck = true;
+
+
+
+                    //Checks is account exists
+                    Account ac = bank.findAccount(newAccount);
+                    if (ac == null)
+                    {
+
+                        bool pinCheck = false;
+                        do
+                        {
+                            //input box that allows user to enter a new pin number
+                            string pinNo = Interaction.InputBox("Please enter a new 4 digit Pin Number", "Account Creation", "", -1, -1);
+                            //checks pin length is correct
+                            if (pinNo.Length == 4)
+                            {
+                                //converts user input to integer
+                                int newPin = Convert.ToInt32(pinNo);
+                                pinCheck = true;
+
+
+                                //input box that allows user to enter a deposit amount
+                                string deposit = Interaction.InputBox("Please enter a deposit amount", "Account Creation", "", -1, -1);
+                                //converts user input to integer
+                                int newDeposit = Convert.ToInt32(deposit);
+                                //inputs all user data and creates the account
+                                bank.newAccount(newDeposit, newPin, newAccount);
+
+                            }
+                            else
+                            {
+                                //error message for pin validation
+                                MessageBox.Show("Pin must be 4 digits long");
+                            }
+                        } while (pinCheck == false);
+
+                    }
+                    else
+                    {
+                        //error message for account validation
+                        MessageBox.Show("Account Number Taken, Please Try Again : \n");
+                    }
+
+                }
+                else
+                {
+                    //error message for account validation
+                    MessageBox.Show("Account number must be 6 digits long.\n");
+                }
+            } while (accountCheck == false);
+           
+            
+
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bool delCheck = false;
+            
+
+            do
+            {
+                string delAcc = Interaction.InputBox("Please enter the account number you wish to delete", "Account Creation", "", -1, -1);
+                if (delAcc.Length == 6)
+                {
+                    int deleteNum = Convert.ToInt32(delAcc);
+                    bank.deleteAccount(deleteNum);
+                    delCheck = true;
+
+
+                }
+                else
+                {
+                    //error message for pin validation
+                    MessageBox.Show("The account you wish to delete must be 6 digits long");
+                }
+            } while (delCheck == false);
+        }
+    }
+}
