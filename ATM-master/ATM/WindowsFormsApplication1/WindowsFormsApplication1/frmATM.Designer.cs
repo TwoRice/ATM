@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmATM));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lblScreen = new System.Windows.Forms.Label();
             this.tblLayoutKeyPad = new System.Windows.Forms.TableLayoutPanel();
@@ -89,6 +90,7 @@
             this.ClientSize = new System.Drawing.Size(384, 461);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(10, 11, 10, 11);
             this.MinimumSize = new System.Drawing.Size(400, 500);
             this.Name = "frmATM";

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnBank = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBank));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.accountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,19 +39,9 @@
             this.fixToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnBank = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnBank
-            // 
-            this.btnBank.BackgroundImage = global::WindowsFormsApplication1.Properties.Resources.bank;
-            this.btnBank.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnBank.Location = new System.Drawing.Point(350, 175);
-            this.btnBank.Name = "btnBank";
-            this.btnBank.Size = new System.Drawing.Size(100, 100);
-            this.btnBank.TabIndex = 0;
-            this.btnBank.UseVisualStyleBackColor = true;
-            this.btnBank.Click += new System.EventHandler(this.btnBank_Click);
             // 
             // menuStrip1
             // 
@@ -137,6 +127,17 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Welcome";
             // 
+            // btnBank
+            // 
+            this.btnBank.BackgroundImage = global::WindowsFormsApplication1.Properties.Resources.bank;
+            this.btnBank.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnBank.Location = new System.Drawing.Point(350, 175);
+            this.btnBank.Name = "btnBank";
+            this.btnBank.Size = new System.Drawing.Size(100, 100);
+            this.btnBank.TabIndex = 0;
+            this.btnBank.UseVisualStyleBackColor = true;
+            this.btnBank.Click += new System.EventHandler(this.btnBank_Click);
+            // 
             // frmBank
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -146,6 +147,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnBank);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.MaximumSize = new System.Drawing.Size(800, 500);
             this.MinimumSize = new System.Drawing.Size(800, 500);
