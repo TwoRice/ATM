@@ -205,7 +205,7 @@ namespace WindowsFormsApplication1
             else
             {
                 if(fix == true) { s.WaitOne(); }
-                currentAccount.decrementBalance(amount);
+                currentAccount.decrementBalance(amount, lag);
                 if(fix == true) { s.Release(); }
                 menuScreen();
             }

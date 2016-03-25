@@ -47,8 +47,14 @@ namespace WindowsFormsApplication1
 
         }
 
+        /**
+        * <summary>
+        * Runs when Bank form is opened and takes account information from a text file and loads it into the bank
+        * </summary>
+        */
         private void frmBank_Load(object sender, EventArgs e)
         {
+            //Checks to see if the file for Account information exists, if not it creates the file with the default bank account information in it
             if (!System.IO.File.Exists("Accounts.txt"))
             {
                 System.IO.File.AppendAllText("Accounts.txt", "111111,1111,500" + Environment.NewLine);
@@ -67,10 +73,17 @@ namespace WindowsFormsApplication1
             }
         }
 
+
+        /**
+        * <summary>
+        * Runs when the bank form is closing and saves all account information to a text file
+        * </summary>
+        */
         private void frmBank_FormClosing(object sender, FormClosingEventArgs e)
         {
             List<Account> ac= bank.getAccounts();
 
+            //Clears the contents of the text file
             System.IO.File.WriteAllText("Accounts.txt", string.Empty);
             foreach (var account in ac)
             {
@@ -79,6 +92,11 @@ namespace WindowsFormsApplication1
 
         }
 
+        /**
+        * <summary>
+        * Enables the lag for the decrement balance method for when its called to help demonstrate the data race condition
+        * </summary>
+        */
         private void lagToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem toggle = ((ToolStripMenuItem)sender);
@@ -95,6 +113,11 @@ namespace WindowsFormsApplication1
             }
         }
 
+        /**
+        * <summary>
+        * Enables the fix for the data race condition by enabling the semaphore code
+        * </summary>
+        */
         private void fixToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem toggle = ((ToolStripMenuItem)sender);

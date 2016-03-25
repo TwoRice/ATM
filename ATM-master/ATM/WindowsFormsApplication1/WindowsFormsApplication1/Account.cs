@@ -40,11 +40,14 @@ namespace WindowsFormsApplication1
          *   true if the transactions if possible
          *   false if there are insufficent funds in the account
          */
-        public Boolean decrementBalance(int amount)
+        public Boolean decrementBalance(int amount, Boolean lag)
         {
             if (this.balance >= amount)
             {
-                balance -= amount;
+                int newBalance;
+                newBalance = balance - amount;
+                if (lag == true) { System.Threading.Thread.Sleep(2000); }
+                balance = newBalance;
                 return true;
             }
             else
