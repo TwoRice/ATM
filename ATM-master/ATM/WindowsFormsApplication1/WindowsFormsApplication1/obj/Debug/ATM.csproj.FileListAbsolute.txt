@@ -28,3 +28,13 @@ C:\Users\Rory\Documents\GitHub\ATM\ATM-master\ATM\WindowsFormsApplication1\Windo
 C:\Users\Rory\Documents\GitHub\ATM\ATM-master\ATM\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.frmBank.resources
 C:\Users\Rory\Documents\GitHub\ATM\ATM-master\ATM\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
 C:\Users\Rory\Documents\GitHub\ATM\ATM-master\ATM\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\ATM.csproj.GenerateResource.Cache
+C:\Users\Adam\Desktop\ATM-master\ATM-master\ATM-master\ATM\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+C:\Users\Adam\Desktop\ATM-master\ATM-master\ATM-master\ATM\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+C:\Users\Adam\Desktop\ATM-master\ATM-master\ATM-master\ATM\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+C:\Users\Adam\Desktop\ATM-master\ATM-master\ATM-master\ATM\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+C:\Users\Adam\Desktop\ATM-master\ATM-master\ATM-master\ATM\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+C:\Users\Adam\Desktop\ATM-master\ATM-master\ATM-master\ATM\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\ATM.csprojResolveAssemblyReference.cache
+C:\Users\Adam\Desktop\ATM-master\ATM-master\ATM-master\ATM\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.frmATM.resources
+C:\Users\Adam\Desktop\ATM-master\ATM-master\ATM-master\ATM\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.frmBank.resources
+C:\Users\Adam\Desktop\ATM-master\ATM-master\ATM-master\ATM\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+C:\Users\Adam\Desktop\ATM-master\ATM-master\ATM-master\ATM\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\ATM.csproj.GenerateResource.Cache

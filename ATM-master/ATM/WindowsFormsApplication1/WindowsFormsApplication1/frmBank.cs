@@ -207,14 +207,19 @@ namespace WindowsFormsApplication1
 
         }
 
+        /**
+        *Method  that allows for accounts to be deleted
+        */
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             bool delCheck = false;
-            
+
 
             do
             {
-                string delAcc = Interaction.InputBox("Please enter the account number you wish to delete", "Account Creation", "", -1, -1);
+
+                //input box that allows user to eneter the account to be deleted
+                string delAcc = Interaction.InputBox("Please enter the account number you wish to delete", "Account Deletion", "", -1, -1);
                 if (delAcc.Length == 6)
                 {
                     int deleteNum = Convert.ToInt32(delAcc);
@@ -225,10 +230,53 @@ namespace WindowsFormsApplication1
                 }
                 else
                 {
-                    //error message for pin validation
+                    //error message for account validation
                     MessageBox.Show("The account you wish to delete must be 6 digits long");
                 }
             } while (delCheck == false);
+        }
+
+        /**
+        *Method  that allows user to seach for accounts
+        */
+        private void findToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bool findCheck = false;
+
+
+            do
+            {
+                string finAcc = Interaction.InputBox("Please enter the account number you wish to view", "Find Account", "", -1, -1);
+                if (finAcc.Length == 6)
+                {
+                       int findNum = Convert.ToInt32(finAcc);    
+                    //Checks is account exists
+                    Account ac = bank.findAccount(findNum);
+                    if (ac == null)
+                    {
+                        //error message for account validation
+                        MessageBox.Show("Account Number Not Found, Please Try Again : \n");
+
+                    }
+                    else
+                    {
+                        //calls method to retreive and print account details
+                        
+                        Account found = bank.findAccount(findNum);
+                        string aN = Convert.ToString(found.getAccountNum());
+                        string pN = Convert.ToString(found.getPinNum());
+                        string dN = Convert.ToString(found.getBalance());
+                        MessageBox.Show("Account No: " + aN + " Pin Number " + pN + " Balance £" + dN);
+                        findCheck = true;
+                    }
+
+                }
+                else
+                {
+                    //error message for account validation
+                    MessageBox.Show("The account you wish to delete must be 6 digits long");
+                }
+            } while (findCheck == false);
         }
     }
 }
