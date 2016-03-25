@@ -15,7 +15,7 @@ namespace WindowsFormsApplication1
     {
 
         Boolean lag, fix;
-        Semaphore s;
+        static Semaphore s;
         //Object holding record of all the accounts on the system
         Bank bank;
         //The account being accessed on the ATM
